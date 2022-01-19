@@ -3,6 +3,7 @@ import mongodb from 'mongodb';
 import dotenv from 'dotenv';
 
 import NamesDAO from './dao/namesDAO.js';
+import TodosDAO from './dao/todosDAO.js';
 
 async function main() {
     dotenv.config();
@@ -16,6 +17,7 @@ async function main() {
     try {
         await client.connect();
         await NamesDAO.injectDB(client);
+        await TodosDAO.injectDB(client);
 
         app.listen(PORT, () => {
             console.log(`Nomming on port: ${PORT}`);
