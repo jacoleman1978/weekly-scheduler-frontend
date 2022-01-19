@@ -1,5 +1,5 @@
 import express from 'express';
-import NamesController from './names_controller';
+import NamesController from './names_controller.js';
 
 const router = express.Router();
 
