@@ -9,20 +9,16 @@ export default class TodosDAO {
             return
         }
         try {
-            todos = await conn.db(process.env.DBNAME).collection('todos')
+            todos = await conn.db(process.env.DB_NAME).collection(DB_COLLECTION)
         }
         catch(err) {
             console.error(`Unable to establish connection handle in todosDAO: ${err}`);
         }
     }
 
-    static async addTodo(nameId, dayOfWeek, todo) {
+    static async addTodo(name, day, todo) {
         try {
-            const todoDoc = {
-                nameId: ObjectId(nameId),
-                dayOfWeek: dayOfWeek,
-                todo: todo
-            }
+            const todoDoc = {name, day, todo}
 
             return await todos.insertOne(todoDoc)
         } 
@@ -32,11 +28,11 @@ export default class TodosDAO {
         }
     }
 
-    static async updateTodo(todoId, todo) {
+    static async updateTodo(todoId, name, day, todo) {
         try {
             const updateResponse = await todos.updateOne(
                 {todoId: ObjectId(todoId)}, 
-                {$set: {todo: todo}}
+                {$set: {todo: todo, name: name, day: day}}
             )   
             return updateResponse
         } 
@@ -48,12 +44,39 @@ export default class TodosDAO {
 
     static async deleteTodo(todoId) {
         try {
-            const deleteResponse = await todos.deleteOne({_id: ObjectId(todoId)})
+            const deleteResponse = await todos.deleteOne({_id: ObjectId(todoId)});
             return deleteResponse
         } 
         catch (err) {
             console.error(`Unable to delete todo: ${err}`);
             return {error: err}
+        }
+    }
+
+    static async getTodos(name = "", day = "") {
+        let query ={};
+
+        if(name && day) {
+            query = {$and: [
+                {name: name},
+                {day: day}
+            ]};
+        } else if (name) {
+            query = {name: name};
+        } else if (day) {
+            query = {day: day};
+        }
+
+        let cursor;
+        try{
+            cursor = await todos.find(query);
+            const todosList = await cursor.toArray();
+            return todosList
+        }
+        catch(err) {
+            console.error(`Unable to issue find command, ${err}`);
+            let todosList = [];
+            return todosList
         }
     }
 }
