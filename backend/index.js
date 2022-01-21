@@ -22,7 +22,6 @@ async function main() {
         })
     }
     catch(err) {
-        console.log("*****ERROR: index.js")
         console.error(err);
         process.exit(1);
     }
