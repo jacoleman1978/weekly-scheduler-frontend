@@ -1,5 +1,4 @@
-import mongodb from 'mongodb';
-const ObjectId = mongodb.ObjectId;
+import {ObjectId} from 'mongodb';
 
 let todos;
 
@@ -9,7 +8,7 @@ export default class TodosDAO {
             return
         }
         try {
-            todos = await conn.db(process.env.DB_NAME).collection(DB_COLLECTION)
+            todos = await conn.db(process.env.DB_NAME).collection(process.env.DB_COLLECTION)
         }
         catch(err) {
             console.error(`Unable to establish connection handle in todosDAO: ${err}`);
@@ -18,8 +17,7 @@ export default class TodosDAO {
 
     static async addTodo(name, day, todo) {
         try {
-            const todoDoc = {name, day, todo}
-
+            const todoDoc = {name: name, day: day, todo: todo}
             return await todos.insertOne(todoDoc)
         } 
         catch (err) {
@@ -31,8 +29,8 @@ export default class TodosDAO {
     static async updateTodo(todoId, name, day, todo) {
         try {
             const updateResponse = await todos.updateOne(
-                {todoId: ObjectId(todoId)}, 
-                {$set: {todo: todo, name: name, day: day}}
+                {"_id": ObjectId(todoId)}, 
+                {$set: {name: name, day: day, todo: todo}}
             )   
             return updateResponse
         } 
@@ -44,7 +42,7 @@ export default class TodosDAO {
 
     static async deleteTodo(todoId) {
         try {
-            const deleteResponse = await todos.deleteOne({_id: ObjectId(todoId)});
+            const deleteResponse = await todos.deleteOne({"_id": ObjectId(todoId)});
             return deleteResponse
         } 
         catch (err) {

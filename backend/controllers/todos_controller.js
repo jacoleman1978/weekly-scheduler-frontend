@@ -3,7 +3,7 @@ import TodosDAO from '../dao/todosDAO.js';
 export default class TodosController {
     static async PostTodo(req,res,next) {
         try {
-            const name = req.body.id;
+            const name = req.body.name;
             const day = req.body.day;
             const todo = req.body.todo;
 
@@ -18,12 +18,11 @@ export default class TodosController {
     static async UpdateTodo(req,res,next) {
         try {
             const todoId = req.body.todoId;
-            const name = req.body.id;
+            const name = req.body.name;
             const day = req.body.day;
             const todo = req.body.todo;
 
             const TodoResponse = await TodosDAO.updateTodo(todoId, name, day, todo);
-
             res.json({status: "success"});
         }
         catch(err) {

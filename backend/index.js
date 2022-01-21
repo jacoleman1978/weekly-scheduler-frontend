@@ -2,7 +2,6 @@ import app from './server.js';
 import mongodb from 'mongodb';
 import dotenv from 'dotenv';
 
-import NamesDAO from './dao/namesDAO.js';
 import TodosDAO from './dao/todosDAO.js';
 
 async function main() {
@@ -16,7 +15,6 @@ async function main() {
 
     try {
         await client.connect();
-        await NamesDAO.injectDB(client);
         await TodosDAO.injectDB(client);
 
         app.listen(PORT, () => {
