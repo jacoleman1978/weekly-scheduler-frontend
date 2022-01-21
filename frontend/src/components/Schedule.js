@@ -7,9 +7,14 @@ function Schedule(props) {
     let week = props.week || false;
     let today = props.today || false;
     
+    const scheduleStyle ={
+        display: "flex",
+        flexDirection: "column",
+        border: "solid red 1px"
+    }
+
     return (
-        <div className="schedule">
-            Schedule
+        <div className="schedule" style={scheduleStyle}>
             <DaysWrapper week={week} today={today}/>
             <RowWrapper week={week} today={today}/>
         </div>

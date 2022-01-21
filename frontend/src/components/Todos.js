@@ -5,13 +5,27 @@ import DeleteButton from './DeleteButton.js';
 
 function Todos(props) {
     let week = props.week || false;
+
+    const todosStyle = {
+        display: "flex",
+        flexDirection: "column"
+    }
+
+    const todoStyle = {
+        display: "flex",
+        justifyContent: "center",
+        border: "solid black 1px"
+    }
     
     return (
-        <div className="todos">
-            Todos
-            <Todo />
-            <EditButton />
-            <DeleteButton />
+        <div className="todos" style={todosStyle}>
+            <div style={todoStyle}>
+                Todos:
+                <Todo />
+                <EditButton />
+                <DeleteButton />
+            </div>
+            
         </div>
     )
 }

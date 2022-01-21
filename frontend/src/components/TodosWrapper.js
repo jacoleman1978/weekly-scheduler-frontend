@@ -6,7 +6,6 @@ function TodosWrapper(props) {
 
     return (
         <div className="todos-wrapper">
-            TodosWrapper
             <Todos week={week} />
         </div>
     )
