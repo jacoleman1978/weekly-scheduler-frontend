@@ -17,7 +17,7 @@ export default class TodosController {
 
     static async UpdateTodo(req,res,next) {
         try {
-            const todoId = req.body.todoId;
+            const todoId = req.params.id;
             const name = req.body.name;
             const day = req.body.day;
             const todo = req.body.todo;
@@ -32,7 +32,7 @@ export default class TodosController {
 
     static async DeleteTodo(req,res,next) {
         try {
-            const todoId = req.body.todoId;
+            const todoId = req.params.id;
             const TodoResponse = await TodosDAO.deleteTodo(todoId);
 
             res.json({status: "success"});
@@ -42,9 +42,10 @@ export default class TodosController {
         }
     }
 
-    static async getTodos(req,res,next) {
-        let name = req.query.name;
-        let day = req.query.day;
+    static async GetTodos(req,res,next) {
+        let name = req.params.name || "";
+        let day = req.params.day || ""
+
         const todosList = await TodosDAO.getTodos(name, day);
 
         let response = {todos: todosList};

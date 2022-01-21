@@ -51,7 +51,7 @@ export default class TodosDAO {
         }
     }
 
-    static async getTodos(name = "", day = "") {
+    static async getTodos(name, day) {
         let query ={};
 
         if(name && day) {
