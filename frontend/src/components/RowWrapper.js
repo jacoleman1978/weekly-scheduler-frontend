@@ -5,10 +5,11 @@ import Name from './Name.js';
 
 function RowWrapper(props) {
     const params = useParams();
+
     let week = props.week || false;
     let today = props.today || false;
     let name = props.name || '';
-    let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+    let days = props.days || "Friday";
     
     let todosDaysMap = [];
     let rowWrapperStyle = {}
@@ -23,16 +24,19 @@ function RowWrapper(props) {
             return <Todos day={day} key={i}/> 
         })
     } else if (today) {
-        //Need logic to determine day
-        todosDaysMap = [<Todos day={"Friday"}/>]
+        rowWrapperStyle = {
+            display: "grid",
+            gridTemplateColumns: "1fr 7fr",
+        }
+        
+        todosDaysMap = [<Todos day={"Friday"} key={1}/>]
     } else {
-        // Temporarily set to 'Thursday'. Remove later.
         rowWrapperStyle = {
             display: "grid",
             gridTemplateColumns: "1fr 7fr",
         }
 
-        todosDaysMap = [<Todos day={params.day || "Thursday"} key={1}/>]
+        todosDaysMap = [<Todos day={params.day} key={1}/>]
     }
 
     return (

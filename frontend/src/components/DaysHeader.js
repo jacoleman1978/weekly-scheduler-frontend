@@ -5,10 +5,9 @@ function DaysWrapper(props) {
     const params = useParams();
     let week = props.week || false;
     let today = props.today || false;
+    let dayText = props.dayText || "";
     let daysMap = []
 
-    let currentDay
-    
     let daysWrapperStyle = {
         display: "grid",
         gridTemplateColumns: "repeat(8, 1fr)"
@@ -29,16 +28,19 @@ function DaysWrapper(props) {
             ) 
         })
     } else if (today) {
-        //Need logic to determine day
-        daysMap = {currentDay}
+        daysWrapperStyle = {
+            display: "grid",
+            gridTemplateColumns: "1fr 7fr",
+        }
+        
+        daysMap = [<div key={"placeholder"}></div>, <div style={dayStyle} key={1}>{dayText}</div>]
     } else {
-        // Temporarily set to 'Thursday'. Remove later.
         daysWrapperStyle = {
             display: "grid",
             gridTemplateColumns: "1fr 7fr",
         }
 
-        daysMap = [<div key={"placeholder"}></div>, <div style={dayStyle} key={1}>{params.day || "Thursday"}</div>]
+        daysMap = [<div key={"placeholder"}></div>, <div style={dayStyle} key={1}>{params.day}</div>]
     }
 
     return (

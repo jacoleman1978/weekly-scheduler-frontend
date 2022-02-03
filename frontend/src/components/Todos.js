@@ -3,7 +3,7 @@ import Todo from './Todo.js';
 import EditButton from './EditButton.js';
 import DeleteButton from './DeleteButton.js';
 
-function Todos() {
+function Todos(props) {
     const todoStyle = {
         display: "grid",
         gridTemplateColumns: "15fr 1fr",
