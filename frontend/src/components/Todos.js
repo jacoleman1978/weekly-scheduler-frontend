@@ -3,25 +3,22 @@ import Todo from './Todo.js';
 import EditButton from './EditButton.js';
 import DeleteButton from './DeleteButton.js';
 
-function Todos(props) {
-    let week = props.week || false;
-
-    const todosStyle = {
-        display: "flex",
-        
-    }
-
+function Todos() {
     const todoStyle = {
-        display: "flex",
-        justifyContent: "center",
-        border: "solid black 1px"
+        display: "grid",
+        gridTemplateColumns: "15fr 1fr",
+        justifyContent: "left",
+        border: "solid black 1px",
+        paddingLeft: "0.5rem"
     }
     
     return (
         <div className="todos" style={todoStyle}>
             <Todo />
-            <EditButton />
-            <DeleteButton />
+            <div style={{display: "flex"}}>
+                <EditButton />
+                <DeleteButton />
+            </div>
         </div>
     )
 }

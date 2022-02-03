@@ -26,10 +26,14 @@ function RowWrapper(props) {
         //Need logic to determine day
         todosDaysMap = [<Todos day={"Friday"}/>]
     } else {
-        todosDaysMap = [<Todos day={params.day}/>]
-    }
+        // Temporarily set to 'Thursday'. Remove later.
+        rowWrapperStyle = {
+            display: "grid",
+            gridTemplateColumns: "1fr 7fr",
+        }
 
-    
+        todosDaysMap = [<Todos day={params.day || "Thursday"} key={1}/>]
+    }
 
     return (
         <div className="row-wrapper" style={rowWrapperStyle}>

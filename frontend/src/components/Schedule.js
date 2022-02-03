@@ -11,7 +11,7 @@ function Schedule(props) {
     
     //Delete setting week to true and family to true
     family = true
-    week = true
+    week = false
     today = false
 
     const scheduleRowStyle = {
@@ -23,8 +23,7 @@ function Schedule(props) {
     if (family) {
         rowsMap = names.map((name, i) => {
             return (
-                <div name={name} key={i}>
-                    
+                <div name={name} key={i}> 
                     <RowWrapper week={week} today={today} name={name}/>
                 </div>
             )

@@ -32,7 +32,13 @@ function DaysWrapper(props) {
         //Need logic to determine day
         daysMap = {currentDay}
     } else {
-        daysMap = [<div style={dayStyle}>{params.day}</div>]
+        // Temporarily set to 'Thursday'. Remove later.
+        daysWrapperStyle = {
+            display: "grid",
+            gridTemplateColumns: "1fr 7fr",
+        }
+
+        daysMap = [<div key={"placeholder"}></div>, <div style={dayStyle} key={1}>{params.day || "Thursday"}</div>]
     }
 
     return (
