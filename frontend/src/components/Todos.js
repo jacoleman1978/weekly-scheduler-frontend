@@ -8,7 +8,7 @@ function Todos(props) {
 
     const todosStyle = {
         display: "flex",
-        flexDirection: "column"
+        
     }
 
     const todoStyle = {
@@ -18,14 +18,10 @@ function Todos(props) {
     }
     
     return (
-        <div className="todos" style={todosStyle}>
-            <div style={todoStyle}>
-                Todos:
-                <Todo />
-                <EditButton />
-                <DeleteButton />
-            </div>
-            
+        <div className="todos" style={todoStyle}>
+            <Todo />
+            <EditButton />
+            <DeleteButton />
         </div>
     )
 }

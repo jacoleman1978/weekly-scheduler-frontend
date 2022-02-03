@@ -1,12 +1,15 @@
 import React from 'react';
 
 function Day(props) {
-    let week = props.week || false;
-    let today = props.today || false;
+    let day = props.day;
+
+    let dayStyle = {
+        border: "green solid 1px"
+    }
     
     return (
-        <div>
-            Day
+        <div style={dayStyle}>
+            {day}
         </div>
     )
 }
