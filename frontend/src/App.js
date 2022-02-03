@@ -32,6 +32,9 @@ function App() {
         break;
       case 6:
         dayText = "Saturday";
+        break;
+      default:
+        dayText = "";
   }
   
   return (
