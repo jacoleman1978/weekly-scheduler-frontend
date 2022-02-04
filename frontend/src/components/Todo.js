@@ -1,15 +1,16 @@
 import React from 'react';
 
-function Todo() {
+function Todo(props) {
+    let todo = props.data
+
     let todoStyle ={
-        display: "flex", 
-        justifyContent: "left"
+        textAlign: "left"
     }
     
     return (
-        <div className="todo" style={todoStyle}>
-            Todo
-        </div>
+        <li className="todo" style={todoStyle}>
+            {todo}
+        </li>
     )
 }
 

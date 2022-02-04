@@ -10,9 +10,11 @@ function RowWrapper(props) {
     let today = props.today || false;
     let name = props.name || '';
     let days = props.days || "Friday";
+    let dayText = props.dayText || "";
+    let data = props.data || [];
     
     let todosDaysMap = [];
-    let rowWrapperStyle = {}
+    let rowWrapperStyle = {};
 
     if (week) {
         rowWrapperStyle = {
@@ -21,22 +23,27 @@ function RowWrapper(props) {
         }
 
         todosDaysMap = days.map((day, i) => {
-            return <Todos day={day} key={i}/> 
+            let todosByDay = data.filter((todo) => {
+                return todo.day === day
+            })
+            return <Todos day={day} name={name} key={i} data={todosByDay}/> 
         })
-    } else if (today) {
-        rowWrapperStyle = {
-            display: "grid",
-            gridTemplateColumns: "1fr 7fr",
-        }
-        
-        todosDaysMap = [<Todos day={"Friday"} key={1}/>]
-    } else {
+    } else if (today) { 
         rowWrapperStyle = {
             display: "grid",
             gridTemplateColumns: "1fr 7fr",
         }
 
-        todosDaysMap = [<Todos day={params.day} key={1}/>]
+        todosDaysMap = [<Todos day={dayText} name={name} key={1} data={data}/>]
+    } else {
+        rowWrapperStyle = {
+            display: "grid",
+            gridTemplateColumns: "1fr 7fr",
+        }
+        let todosByDay = data.filter((todo) => {
+            return todo.day === params.day
+        })
+        todosDaysMap = [<Todos day={params.day} name={name} key={1} data={todosByDay}/>]
     }
 
     return (

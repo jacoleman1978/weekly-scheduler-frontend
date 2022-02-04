@@ -48,7 +48,6 @@ export default class TodosController {
 
         const todosList = await TodosDAO.getTodos(name, day);
 
-        let response = {todos: todosList};
-        res.json(response);
+        res.json(todosList);
     }
 }

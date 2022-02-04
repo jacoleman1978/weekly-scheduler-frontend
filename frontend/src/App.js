@@ -48,8 +48,8 @@ function App() {
           <Route path='/schedules' element={<Schedule days={days} names={names} family={true} week={true} today={false}/>} />
           <Route path='/schedules/name/:name/day/:day' element={<Schedule family={false} week={false} today={false}/>} />
           <Route path='/schedules/day/:day/name/:name' element={<Schedule family={false} week={false} today={false}/>} />
-          <Route path='/todos/:id' element={<TodoForm newTodo={false} />} />
-          <Route path='/todos/new' element={<TodoForm newTodo={true} />} />
+          <Route path='/schedules/todos/:id' element={<TodoForm newTodo={false} />} />
+          <Route path='/schedules/todos/new' element={<TodoForm newTodo={true} />} />
         </Routes>
       </Router>
     </div>
