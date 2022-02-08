@@ -14,6 +14,7 @@ function Schedule(props) {
     let names = props.names || "";
     let name = params.name || "";
     let days = props.days;
+    let day = params.day;
     let dayText = props.dayText || "";
     let rowsMap = [];
 
@@ -44,11 +45,21 @@ function Schedule(props) {
             })
             return (<div key={i}><RowWrapper week={week} today={today} name={name} key={i} dayText={dayText} data={filteredTodos}/></div>)
         })
-    } else {
+    } else if (name) {
         let filteredTodos = todoArr.filter(todo => {
             return todo.name === name
         })
         rowsMap = [<div key={0}><RowWrapper week={week} today={today} name={name} key={0} days={days} data={filteredTodos}/></div>]
+    } else {
+        let filteredTodosDay = todoArr.filter(todo => {
+            return todo.day === day
+        })
+        rowsMap = names.map((name, i) => {
+            let filteredTodos = filteredTodosDay.filter(todo => {
+                return todo.name === name
+            })
+            return (<div key={i}><RowWrapper week={week} today={today} name={name} key={i} day={day} data={filteredTodos}/></div>)
+        })
     }
 
     return (
