@@ -3,10 +3,10 @@ import Todo from './Todo.js';
 import EditButton from './EditButton.js';
 import DeleteButton from './DeleteButton.js';
 
+
 function Todos(props) {
     let data = props.data || [];
-    let day = props.day;
-    let name = props.name;
+
     let todoMap = [];
     
     const listStyle = {
@@ -29,8 +29,8 @@ function Todos(props) {
                 <div key={todo._id} id={todo._id} style={todoStyle}>
                     <Todo data={todo.todo} key={todo._id}/>
                     <div style={{display: "flex"}}>
-                        <EditButton />
-                        <DeleteButton />
+                        <EditButton id={todo._id}/>
+                        <DeleteButton id={todo._id} />
                     </div>
                 </div>
             )

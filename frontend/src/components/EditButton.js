@@ -1,6 +1,7 @@
 import React from 'react';
 
-function EditButton() {
+function EditButton(props) {
+    let id = props.id;
     let editBtnStyle = {
         marginLeft: "0.5rem",
         marginRight: "0.5rem"

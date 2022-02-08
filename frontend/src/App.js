@@ -52,6 +52,7 @@ function App() {
           <Route path='/schedules/todos/new' element={<TodoForm newTodo={true} />} />
         </Routes>
       </Router>
+      <TodoForm />
     </div>
   );
 }
