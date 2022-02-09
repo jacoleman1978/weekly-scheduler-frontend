@@ -20,7 +20,7 @@ function Todos(props) {
         display: "grid",
         gridTemplateColumns: "15fr 1fr",
         justifyContent: "left",
-        paddingLeft: "0.5rem"
+        padding: "0.1rem 0.25rem"
     }
 
     if (data.length > 0) {

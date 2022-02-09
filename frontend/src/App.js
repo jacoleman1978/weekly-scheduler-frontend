@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Menu from './components/Menu.js';
 import Schedule from './components/Schedule.js';
 import TodoForm from './components/TodoForm.js';
+import Container from 'react-bootstrap/Container';
 
 function App() {
   let names = ["Annora", "Anders", "Lainey", "Cadigan", "Emily", "Adele", "Jamie"];
@@ -38,7 +39,7 @@ function App() {
   }
   
   return (
-    <div className="App">
+    <Container className="App">
       <Menu names={names} days={days}/>
       <Router>
         <Routes>
@@ -53,7 +54,7 @@ function App() {
         </Routes>
       </Router>
       <TodoForm />
-    </div>
+    </Container>
   );
 }
 

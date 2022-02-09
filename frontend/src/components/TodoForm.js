@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -8,14 +8,29 @@ import Col from 'react-bootstrap/Col'
 function TodoForm(props) {
     let newTodo = props.newTodo || false;
 
+    let [formDay, setFormDay] = useState("");
+    let [formName, setFormName] = useState("");
+    let [formTodo, setFormTodo] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formDay)
+        console.log(formName)
+        console.log(formTodo)
+    }
+
+    const newTodoFormStyle = {
+        marginTop: "1rem"
+    }
+
     return (
-        <Container>
+        <Container style={newTodoFormStyle}>
             <h1>New Todo</h1>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col xs="auto">
                         <Form.Group className="mb-3" controlId="formDay">
-                            <Form.Select aria-label="Default select example" required>
+                            <Form.Select aria-label="Default select example" required onChange={(e) => setFormDay(e.target.value)}>
                                 <option >Select a day</option>
                                 <option value="Friday">Friday</option>
                                 <option value="Saturday">Saturday</option>
@@ -29,7 +44,7 @@ function TodoForm(props) {
                     </Col>
                     <Col xs="auto">
                         <Form.Group className="mb-3" controlId="formName">
-                            <Form.Select aria-label="Default select example" required>
+                            <Form.Select aria-label="Default select example" required onChange={(e) => setFormName(e.target.value)}>
                                 <option >Select a name</option>
                                 <option value="Annora">Annora</option>
                                 <option value="Anders">Anders</option>
@@ -47,6 +62,7 @@ function TodoForm(props) {
                                 type="text"
                                 aria-describedby="Enter todo"
                                 placeholder="Ender todo"
+                                onChange={(e) => setFormTodo(e.target.value)}
                             />
                         </Form.Group>
                     </Col>

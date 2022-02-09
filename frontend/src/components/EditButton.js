@@ -1,16 +1,16 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 function EditButton(props) {
     let id = props.id;
     let editBtnStyle = {
-        marginLeft: "0.5rem",
-        marginRight: "0.5rem"
+        padding: "0rem 0.25rem"
     }
     
     return (
-        <div style={editBtnStyle} className="edit-button">
+        <Button style={editBtnStyle} className="edit-button btn-secondary">
             <i className="far fa-edit"></i>
-        </div>
+        </Button>
     )
 }
 
